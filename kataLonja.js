@@ -16,7 +16,7 @@ function calculateDepreciation (total, km){
  * @param {number} vieiras - vieiras price
  * @param {number} pulpo - pulpo price
  * @param {number} centollos - centollos price
- * @returns {Object} - city object
+ * @returns {String} - city object
  */
 function getBestCity(vieiras, pulpo, centollos){
   const bestCity = {
@@ -25,7 +25,7 @@ function getBestCity(vieiras, pulpo, centollos){
   };
   const {precios, costPerKm} = config;
 
-  return precios.reduce((valorAnterior, valorActual, i) => {
+  const cityObject = precios.reduce((valorAnterior, valorActual, i) => {
     const {vieirasPrice, pulpoPrice, centollosPrice, km, city} = valorActual;
     const priceTotal = (vieirasPrice * vieiras) + (pulpoPrice * pulpo) + (centollosPrice * centollos);
     const depreciation = calculateDepreciation(priceTotal, km);
@@ -34,6 +34,8 @@ function getBestCity(vieiras, pulpo, centollos){
 
     return total > valorAnterior.total?{city,total}:valorAnterior;
   }, {city:'', total:0});
+
+  return cityObject.city;
 
 }
 
