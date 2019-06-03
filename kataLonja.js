@@ -16,7 +16,7 @@ function calculateDepreciation (total, km){
  * @param {number} vieiras - vieiras price
  * @param {number} pulpo - pulpo price
  * @param {number} centollos - centollos price
- * @returns {String} - city name
+ * @returns {Object} - city object
  */
 function getBestCity(vieiras, pulpo, centollos){
   const bestCity = {
