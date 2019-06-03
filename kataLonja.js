@@ -24,7 +24,7 @@ function calculateDepreciation (total, km){
    const {costPerKm} = config;
    const priceTotal = (vieirasPrice * vieiras) + (pulpoPrice * pulpo) + (centollosPrice * centollos);
    const depreciation = calculateDepreciation(priceTotal, km);
-   const tripCost = (km * 2)
+   const tripCost = (km * costPerKm)
    return priceTotal - depreciation -  tripCost;
  }
 /**
