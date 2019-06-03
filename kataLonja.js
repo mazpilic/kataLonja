@@ -24,19 +24,17 @@ function getBestCity(vieiras, pulpo, centollos){
     total: 0,
   };
   const {precios, costPerKm} = config;
-  precios.forEach(item => {
-    const {vieirasPrice, pulpoPrice, centollosPrice, km, city} = item;
+
+  return precios.reduce((valorAnterior, valorActual, i) => {
+    const {vieirasPrice, pulpoPrice, centollosPrice, km, city} = valorActual;
     const priceTotal = (vieirasPrice * vieiras) + (pulpoPrice * pulpo) + (centollosPrice * centollos);
     const depreciation = calculateDepreciation(priceTotal, km);
     const tripCost = (km * 2)
     const total = priceTotal - depreciation -  tripCost;
 
-    if(bestCity.total < total) {
-      bestCity.total = total;
-      bestCity.city = city;
-    }
-  });
-  return bestCity.city;
+    return total > valorAnterior.total?{city,total}:valorAnterior;
+  }, {city:'', total:0});
+
 }
 
 console.log(getBestCity(50, 100, 50))
